@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Личный сайт</title>
+    <meta name="description" content="Отчет" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="images/icon.png">
+  </head>
+  <body style='overflow-x:hidden;' id="report">
+    <div id="titul">
+        <p><font size="5">Министерство науки и высшего образования<br>Российской Федерации</font></p>
+        <p><font size="4">Федеральное государственное бюджетное<br>образовательное учреждение высшего образования</font></p>
+        <p><font size="4">«НОВОСИБИРСКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ»</font></p>
+        <img class="titul-img"src="images/titul.png">
+        <p><font size="4">Теоретической и прикладной математики</font></p>
+        <p><font size="4">Лабораторная работа №3<br>по дисциплине «ОСНОВЫ WEB-ПРОГРАММИРОВАНИЯ»</font></p><br>
+        <p><font size="4.5"><strong>ПРОГРАММА НА JAVASCRIPT</strong></font></p><br>
+        <img class="titul-img2" align="left" src="images/titul2.png">
+        <p align="left"><font size="3.5" >Факультет: ПМИ</font></p>
+        <p align="left"><font size="3.5">Группа: ПМИ-02</font></p>
+        <p align="left"><font size="3.5">Студент: Сидоров Даниил</font></p>
+        <p align="left" class="bottom"><br><font size="3.5">Преподаватель: 	Цыгулин Алексей Александрович.</font></p>
+        <p><font size="4">Новосибирск</font></p>
+        <p><font size="4">2022</p></font><br>
+    </div>
+    <hr size="1 " color="#424242">
+    <div id="normalList">
+      <div class="margin">
+        <h1>1. Цель работы</h1>
+        <p>Цель: познакомиться с языком сценариев JavaScript, добавить на страницу «О себе» интерактивную функцию комментариев.</p>
+        <h1>2. Порядок выполнения работы</h1>
+        <p>Расширьте возможности страницы «О себе», добавьте функцию
+          «добавлять комментарии» на страницу и возможности по управлению
+          этими комментариями для автора. При добавлении комментария не
+          должно быть перезагрузки страницы. Добавление нового комментария
+          реализуйте через манипуляцию деревом DOM.</p>
+        <h1>3. Инструкция по запуску сайта</h1>
+        <p>Для запуска сайта необходимо ввести в терминале команду node server.js или nodemon server.js. Для открытия сайта необходимо перейти по адресу localhost:8000 или 127.0.0.1:8000.</p>
+        <h1>4. Описание выполненной работы</h1>
+        <p>На сайте было добавлено 2 страницы: страница, где пользователь может оставить свой комментарий, и страница для владельца сайта,
+          зайдя на которую можно удалять комментарии. Для получения доступа ко второй странице необходимо пройти авторизацию.
+        </p>
+        <img class="Screen"src="images/comm.png">
+        
+      </div>
+    </div>
+    <hr size="1 " color="#424242">
+    <div id="normalList">
+      <div class="margin">
+        <img class="Screen"src="images/cabinet.png">
+        <img class="Screen"src="images/login.png">
+        <p>Сохранение комменариев осуществляется записью в файл database.json. Запись происходит на стороне сервера в результате post запроса.</p>
+        <code><pre>
+          app.post('/submit-form', jsonParser, function (req, res) {
+          let comment = req.body;
+          commentsString = JSON.stringify(comment, null, 2);
+          fs.writeFileSync(`${__dirname}/public/database.json`, commentsString);
+          });
+        </pre></code>
+        <p>Получение данных из файла происходит в результате get запроса.</p>
+      </div>
+    </div>
+    <div id="normalList">
+      <div class="margin">
+        <code><pre>
+          let xhr = new XMLHttpRequest();
+          xhr.open('GET','database.json');
+          xhr.onreadystatechange = function(){
+            if(xhr.readyState===4 && xhr.status===200){
+              comments=JSON.parse(xhr.responseText);
+              buildTable(comments,document.querySelector('#info-table'));
+            }
+          }
+          xhr.send();
+        </pre></code>
+        <p>Вход осуществляется также в результате обработки сервером post запроса.</p>
+        <code><pre>
+          app.post('/login', urlencodedParser, function (req, res) {
+          let login = req.body.authorization;
+          if (login=="admin12345") res.send("1");else res.send("0");
+          });
+        </pre></code>
+        <p>После обновления страницы новый комментарий уже появляется в ходе чтения файла. До обновления страницы для его появления манипулируем деревом DOM</p>
+        <code><pre>
+          function addEl()
+          {
+            let name = document.querySelector('#name').value;
+            let comm = document.querySelector('#comm').value;
+            let grade = document.querySelector('#fid-1').checked;
+            if (comm== ""||name== ""){alert("Заполните все поля!");return;}
+            var today  = new Date();
+            let time=today.toLocaleString('ru-RU');
+            comments.push (new comment(name, comm, time, grade));
+            let commentsString = JSON.stringify(comments);
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST','submit-form');
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.send(commentsString);
+            document.querySelector('#comm').value="";
+            document.querySelector('#name').value="";
+            var tbodyRef = 
+            document.getElementById('info-table').getElementsByTagName('tbody')[0];
+            let tr = document.createElement('tr');
+            let td = document.createElement('td');
+            td.textContent=name;
+            tr.appendChild(td);
+        </pre></code>
+      </div>
+    </div>
+    <div id="normalList">
+      <div class="margin">
+        <code><pre>         
+          td = document.createElement('td');
+          td.textContent=comm;
+          tr.appendChild(td);
+          td = document.createElement('td');
+          td.textContent=time;
+          tr.appendChild(td);
+          if(grade==false) tr.style.background = 
+          '#a3ff72';else tr.style.background = '#ffadad';
+          tbodyRef.appendChild(tr);
+          }
+        </pre></code>
+        <p>Чтобы запомнить авторизирован пользователь или нет сохраняем переменную в localstorage и отслеживаем ее значение.</p>
+        <code><pre>
+          var flag=localStorage.getItem('flag');
+          //Если пользователь вошел
+          if (flag==1){
+            let node = document.querySelector('#node');
+            let lifirst= document.querySelector('#node li:nth-child(5)');
+            lifirst.parentNode.removeChild(lifirst);
+            node.insertAdjacentHTML('beforeend',
+             '&lt;li&gt&lt;a href="cabinet.html"  title=""&gtКабинет&lt;/a&gt&lt;/li&gt');
+            node.insertAdjacentHTML('beforeend',
+             '&lt;li&gt&lt;a class="exit" onclick="hide();" title=""&gtВыход&lt;/a&gt&lt;/li&gt');
+          }
+          //Функция выхода
+          function hide(){
+            localStorage.setItem('flag',0);
+    
+            if(document.querySelector('#info-table-admin')) {
+              window.location.href = 'main.html';
+            }else{
+              let node = document.querySelector('#node');
+              let lifirst= document.querySelector('#node li:nth-child(6)');
+              lifirst.parentNode.removeChild(lifirst);
+              let lisecond= document.querySelector('#node li:nth-child(5)');
+              lisecond.parentNode.removeChild(lisecond);
+              node.insertAdjacentHTML('beforeend',
+               '&lt;li&gt&lt;a href="#openModal"  title=""&gtВход&lt;/a&gt&lt;/li&gt');
+            }
+          }
+        </pre></code>
+        <h1>5. Вывод</h1>
+        <p>В результате лабораторной работы познакомился с JS, создал подобие комментариев и авторизации.</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Личный сайт</title>
+    <meta name="description" content="Информация обо мне" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="images/icon.png">
+  </head>
+  <body>
+    <div id="nav-wrapper">
+        <div id="nav" class="container">
+            <div id="logo">
+                <h1 ><a id="logobg" href="main.html">Sido </a></h1>
+                <p class ="prepiska"><a href="main.html">Личный сайт</a></p>
+            </div>
+            
+            <div id="menu">
+              <ul id="node">
+                  <li><a href="main.html" >Главная</a></li>
+                  <li><a href="aboutme.html" >Обо мне</a></li>
+                  <li><a href="report.html">Отчет</a></li>
+                  <li><a href="comment.html">Отзывы</a></li>
+                  <li><a href="#openModal">Вход</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="banner" class="container">
+      <h2>РОДИЛСЯ В КУЙБЫШЕВЕ</h2>
+      <img class="photo"src="images/kainsk.png" border="2px">
+      <h2>ВЫРОС В СЕВЕРНОМ</h2>
+      <img class="photo"src="images/north.jpg" border="2px">
+      <h2>УЧИЛСЯ В СЕВЕРНОЙ ШКОЛЕ</h2>
+      <img class="photo"src="images/school.jpg" border="2px">
+      <h2>В ДАННЫЙ МОМЕНТ УЧУСЬ В НГТУ ФПМИ</h2>
+      <img class="photo"src="images/NSTU.jpg" border="2px">
+      <h2>ЖИВУ В ОБЩЕЖИТИИ СИБУПК</h2>
+      <img class="photo"src="images/obsh.jpg" border="2px">
+      <h2>ЛЮБЛЮ СЛУШАТЬ МУЗЫКУ</h2>
+      <img class="photo"src="images/music.jpg" border="2px">
+      <h2>А ТАК ЖЕ ИГРАТЬ В ИГРЫ</h2>
+      <img class="photo"src="images/games.jpg" border="2px">
+      
+    </div>
+    <div id="openModal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">ВХОД</h3>
+            <a href="#close" title="Close" class="close">×</a>
+          </div>
+          <div class="modal-body">
+              <form id="form" action="DB.php">
+              <div class="text-field1">
+                  <label class="text-field__label1" for="login">Логин</label>
+                  <input class="text-field__input1" type="text" name="login" id="login" placeholder="Login"  value="" required >
+              </div>
+              <div class="text-field1">
+                  <label class="text-field__label1" for="login">Пароль</label>
+                  <input class="text-field__input1" type="password" name="password" id="password" placeholder="Password"  value="" required>
+              </div>
+          </form>
+              <div class="login">
+                  <button onClick="login();" type="button">Войти</button>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>

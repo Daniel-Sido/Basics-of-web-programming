@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Личный сайт</title>
+    <meta name="description" content="Отзывы" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="images/icon.png">
+  </head>
+  <body>
+    <div id="nav-wrapper">
+        <div id="nav" class="container">
+            <div id="logo">
+                <h1 ><a id="logobg" href="main.html">Sido</a></h1>
+                <p class ="prepiska"><a href="main.html">Личный сайт</a></p>
+            </div>
+            
+            <div id="menu">
+                <ul id="node">
+                    <li><a href="main.html">Главная</a></li>
+                    <li><a href="aboutme.html">Обо мне</a></li>
+                    <li><a href="report.html">Отчет</a></li>
+                    <li><a href="comment.html">Отзывы</a></li>
+                    <li><a href="#openModal">Вход</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="banner" class="container">
+        <h1>УПРАВЛЕНИЕ ОТЗЫВАМИ</h1>
+        
+    </div>
+    <table id="info-table-admin">
+      <tbody>
+      </tbody>
+    </table>
+    <div id="openModal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">ВХОД</h3>
+            <a href="#close" title="Close" class="close">×</a>
+          </div>
+          <div class="modal-body">
+              <form id="form" action="DB.php">
+              <div class="text-field1">
+                  <label class="text-field__label1" for="login">Логин</label>
+                  <input class="text-field__input1" type="text" name="login" id="login" placeholder="Login"  value="" required >
+              </div>
+              <div class="text-field1">
+                  <label class="text-field__label1" for="login">Пароль</label>
+                  <input class="text-field__input1" type="password" name="password" id="password" placeholder="Password"  value="" required>
+              </div>
+          </form>
+              <div class="login">
+                  <button onClick="login();" type="button">Войти</button>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>

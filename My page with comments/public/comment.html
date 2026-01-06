@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Личный сайт</title>
+    <meta name="description" content="Отзывы" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="images/icon.png">
+  </head>
+  <body>
+    <div id="nav-wrapper">
+        <div id="nav" class="container">
+            <div id="logo">
+                <h1 ><a id="logobg" href="main.html">Sido</a></h1>
+                <p class ="prepiska"><a href="main.html">Личный сайт</a></p>
+            </div>
+            
+            <div id="menu">
+                <ul id="node">
+                    <li><a href="main.html">Главная</a></li>
+                    <li><a href="aboutme.html">Обо мне</a></li>
+                    <li><a href="report.html">Отчет</a></li>
+                    <li><a href="comment.html">Отзывы</a></li>
+                    <li><a href="#openModal">Вход</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="banner" class="container">
+        <h1>ОТЗЫВЫ </h1>
+        <form>
+          <input class="text-field" type="text" name="name" id="name" required placeholder="Ваше имя" value="" >
+          <input class="text-field-big" type="text" name="comm" id="comm" required placeholder="Ваши пожелания" value="" >
+          <div class="form_toggle">
+            <div class="form_toggle-item item-1">
+              <input id="fid-1" type="radio" name="radio" value="on" checked>
+              <label for="fid-1">Дизлайк</label>
+            </div>
+            <div class="form_toggle-item item-2">
+              <input id="fid-2" type="radio" name="radio" value="off">
+              <label for="fid-2">Лайк</label>
+            </div>
+          </div>
+          <button class="button"  type="button" onClick="addEl()" name="button">Оставить</button></p>
+        </form>
+    </div>
+    <table id="info-table">
+      <tbody>
+      </tbody>
+    </table>
+    <div id="openModal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">ВХОД</h3>
+            <a href="#close" title="Close" class="close">×</a>
+          </div>
+          <div class="modal-body">
+              <form id="form" action="DB.php">
+              <div class="text-field1">
+                  <label class="text-field__label1" for="login">Логин</label>
+                  <input class="text-field__input1" type="text" name="login" id="login" placeholder="Login"  value="" required >
+              </div>
+              <div class="text-field1">
+                  <label class="text-field__label1" for="login">Пароль</label>
+                  <input class="text-field__input1" type="password" name="password" id="password" placeholder="Password"  value="" required>
+              </div>
+          </form>
+              <div class="login">
+                  <button onClick="login();" type="button">Войти</button>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+    <script src="scripts.js"></script>
+  </body>
+</html>
